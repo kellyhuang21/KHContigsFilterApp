@@ -9,9 +9,14 @@ module KHContigFilterApp {
         string report_ref;
     } ReportResults;
 
-    /*
-        This example function accepts any number of parameters and returns results in a KBaseReport
-    */
-    funcdef run_KHContigFilterApp(mapping<string,UnspecifiedObject> params) returns (ReportResults output) authentication required;
+        /*
+            Example app which filters contigs in an assembly using both a minimum contig length
+        */
+        funcdef run_KHContigFilterApp(mapping<string,UnspecifiedObject> params) returns (ReportResults output) authentication required;
+
+        /*
+            New app which filters contigs in an assembly using both a minimum and a maximum contig length
+        */
+        funcdef run_KHContigFilterApp_max(mapping<string,UnspecifiedObject> params) returns (ReportResults output) authentication required;
 
 };

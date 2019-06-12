@@ -76,30 +76,103 @@ class KHContigFilterAppTest(unittest.TestCase):
 
     # NOTE: According to Python unittest naming rules test method names should start from 'test'. # noqa
     # NOTE: According to Python unittest naming rules test method names should start from 'test'. # noqa
-    def test_run_KHContigFilterApp_ok(self):
+    def my_test_run_KHContigFilterApp_ok(self):
         # call your implementation
         ret = self.serviceImpl.run_KHContigFilterApp(self.ctx,
                                                 {'workspace_name': self.wsName,
                                                  'assembly_input_ref': self.assembly_ref,
                                                  'min_length': 10
                                                  })
-
         # Validate the returned data
+        print(ret)
         self.assertEqual(ret[0]['n_initial_contigs'], 3)
         self.assertEqual(ret[0]['n_contigs_removed'], 1)
         self.assertEqual(ret[0]['n_contigs_remaining'], 2)
-
-    def test_run_KHContigFilterApp_min_len_negative(self):
+    def my_test_run_KHContigFilterApp_min_len_negative(self):
         with self.assertRaisesRegex(ValueError, 'min_length parameter cannot be negative'):
             self.serviceImpl.run_KHContigFilterApp(self.ctx,
                                               {'workspace_name': self.wsName,
                                                'assembly_input_ref': '1/fake/3',
                                                'min_length': '-10'})
-
-    def test_run_KHContigFilterApp_min_len_parse(self):
+    def my_test_run_KHContigFilterApp_min_len_parse(self):
         with self.assertRaisesRegex(ValueError, 'Cannot parse integer from min_length parameter'):
             self.serviceImpl.run_KHContigFilterApp(self.ctx,
                                               {'workspace_name': self.wsName,
                                                'assembly_input_ref': '1/fake/3',
                                                'min_length': 'ten'})
 
+    def test_run_KHContigFilterApp_max(self):
+        ref = "79/16/1"
+        result = self.serviceImpl.run_KHContigFilterApp_max(self.ctx, {
+            'workspace_name':self.wsName,
+            'assembly_ref': ref,
+            'min_length': 100,
+            'max_length': 1000000
+        })
+        print(result)
+
+    def test_invalid_params(self):
+        impl = self.serviceImpl
+        ctx = self.ctx
+        ws = self.wsName
+        # Missing assembly ref
+        with self.assertRaises(ValueError):
+            impl.run_KHContigFilterApp_max(ctx, {'workspace_name': ws,
+                'min_length': 100, 'max_length': 1000000})
+        # Missing min length
+        with self.assertRaises(ValueError):
+            impl.run_KHContigFilterApp_max(ctx, {'workspace_name': ws, 'assembly_ref': 'x',
+                'max_length': 1000000})
+        # Missing max length
+        with self.assertRaises(ValueError):
+            impl.run_KHContigFilterApp_max(ctx, {'workspace_name': ws, 'assembly_ref': 'x',
+                                             'min_length': 1})
+        # Min length is negative
+        with self.assertRaises(ValueError):
+            impl.run_KHContigFilterApp_max(ctx, {'workspace_name': ws, 'assembly_ref': 'x',
+                'min_length': -1, 'max_length': 1000000})
+
+        # Max length is negative
+        with self.assertRaises(ValueError):
+            impl.run_KHContigFilterApp_max(ctx, {'workspace_name': ws, 'assembly_ref': 'x',
+                                                 'min_length': 1, 'max_length': -1000000})
+        # Min length is wrong type
+        with self.assertRaises(ValueError):
+            impl.run_KHContigFilterApp_max(ctx, {'workspace_name': ws, 'assembly_ref': 'x',
+                'min_length': 'x', 'max_length': 1000000})
+        # Max length is wrong type
+        with self.assertRaises(ValueError):
+            impl.run_KHContigFilterApp_max(ctx, {'workspace_name': ws, 'assembly_ref': 'x',
+                                                 'min_length': 1, 'max_length': 'x'})
+        # Assembly ref is wrong type
+        with self.assertRaises(ValueError):
+            impl.run_KHContigFilterApp_max(ctx, {'workspace_name': ws, 'assembly_ref': 1,
+                'min_length': 1, 'max_length': 1000000})
+
+    # Inside {username}ContigFilterImpl_server_test:
+    def test_run_KHContigFilter_test_min(self):
+        ref = "79/16/1"
+        params = {
+            'workspace_name': self.wsName,
+            'assembly_ref': ref,
+            'min_length': 200000,
+            'max_length': 6000000
+        }
+        result = self.serviceImpl.run_KHContigFilterApp_max(self.ctx, params)
+        self.assertEqual(result[0]['n_total'], 2)
+        self.assertEqual(result[0]['n_remaining'], 1)
+
+    def test_run_KHContigFilter_test_max(self):
+        ref = "79/16/1"
+        params = {
+            'workspace_name': self.wsName,
+            'assembly_ref': ref,
+            'min_length': 100000,
+            'max_length': 4000000
+        }
+        result = self.serviceImpl.run_KHContigFilterApp_max(self.ctx, params)
+        self.assertEqual(result[0]['n_total'], 2)
+        self.assertEqual(result[0]['n_remaining'], 1)
+        self.assertTrue(len(result[0]['filtered_assembly_ref']))
+        self.assertTrue(len(result[0]['report_name']))
+        self.assertTrue(len(result[0]['report_ref']))

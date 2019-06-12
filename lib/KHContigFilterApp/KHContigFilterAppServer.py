@@ -342,6 +342,10 @@ class Application(object):
                              name='KHContigFilterApp.run_KHContigFilterApp',
                              types=[dict])
         self.method_authentication['KHContigFilterApp.run_KHContigFilterApp'] = 'required'  # noqa
+        self.rpc_service.add(impl_KHContigFilterApp.run_KHContigFilterApp_max,
+                             name='KHContigFilterApp.run_KHContigFilterApp_max',
+                             types=[dict])
+        self.method_authentication['KHContigFilterApp.run_KHContigFilterApp_max'] = 'required'  # noqa
         self.rpc_service.add(impl_KHContigFilterApp.status,
                              name='KHContigFilterApp.status',
                              types=[dict])
