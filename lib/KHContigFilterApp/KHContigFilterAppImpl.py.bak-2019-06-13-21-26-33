@@ -32,7 +32,7 @@ This sample module contains one small method that filters contigs.
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/kellyhuang21/KHContigsFilterApp.git"
-    GIT_COMMIT_HASH = "8e43e14cf781a28e3745336f6c4590ad9eaa6947"
+    GIT_COMMIT_HASH = "a895acaadb61b76b767c96b570687f71a15ed06f"
 
     #BEGIN_CLASS_HEADER
     # Class variables and functions can be defined in this block

@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ff0345c-85ba-4d64-afb6-331f39049aa8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/KHContigFilterApp/KHContigFilterAppImpl.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib/KHContigFilterApp/KHContigFilterAppImpl.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/narrative/methods/run_KHContigFilterApp_max/display.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/narrative/methods/run_KHContigFilterApp_max/display.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/narrative/methods/run_KHContigFilterApp_max/spec.json" beforeDir="false" afterPath="$PROJECT_DIR$/ui/narrative/methods/run_KHContigFilterApp_max/spec.json" afterDir="false" />
-    </list>
+    <list default="true" id="8ff0345c-85ba-4d64-afb6-331f39049aa8" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/lib/KHContigFilterApp/KHContigFilterAppImpl.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="645">
-              <caret line="43" column="27" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
+              <caret line="43" column="26" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
               <folding>
                 <element signature="e#99#113#0" expanded="true" />
               </folding>
@@ -395,7 +391,7 @@
     <entry file="file://$PROJECT_DIR$/lib/KHContigFilterApp/KHContigFilterAppImpl.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="645">
-          <caret line="43" column="27" selection-start-line="43" selection-start-column="27" selection-end-line="43" selection-end-column="27" />
+          <caret line="43" column="26" selection-start-line="43" selection-start-column="26" selection-end-line="43" selection-end-column="26" />
           <folding>
             <element signature="e#99#113#0" expanded="true" />
           </folding>
