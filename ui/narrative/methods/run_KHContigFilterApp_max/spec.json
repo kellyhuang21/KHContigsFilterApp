@@ -9,9 +9,9 @@
         "input": null,
         "output": "no-display"
     },
-    "parameters": [ 
+    "parameters": [
         {
-            "id": "assembly_ref",
+            "id": "assembly_input_ref",
             "optional": false,
             "advanced": false,
             "allow_multiple": false,
@@ -38,7 +38,7 @@
             "optional": false,
             "advanced": false,
             "allow_multiple": false,
-            "default_values": [ "" ],
+            "default_values": [ "99999999" ],
             "field_type": "text",
             "text_options": {
                 "validate_as": "int",
@@ -59,8 +59,8 @@
                     "narrative_system_variable": "workspace_id",
                     "target_property": "workspace_id"
                 },{
-                    "input_parameter": "assembly_ref",
-                    "target_property": "assembly_ref",
+                    "input_parameter": "assembly_input_ref",
+                    "target_property": "assembly_input_ref",
                     "target_type_transform": "resolved-ref"
                 },{
                     "input_parameter": "min_length",

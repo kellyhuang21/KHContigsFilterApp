@@ -41,7 +41,7 @@ This sample module contains one small method that filters contigs.
     # config contains contents of config file in a hash or None if it couldn't
     # be found
     def __init__(self, config):
-        #BEGIN_CONSTRUCTOR
+        #BEGIN_CONSTRUCTOR 
         
         # Any configuration parameters that are important should be parsed and
         # saved in the constructor.
@@ -163,7 +163,6 @@ This sample module contains one small method that filters contigs.
         # return variables are: output
         #BEGIN run_KHContigFilterApp_max
         # Check that the parameters are valid
-        output={}
         for name in ['min_length', 'max_length', 'assembly_ref', 'workspace_name']:
             if name not in params:
                 raise ValueError('Parameter "' + name + '" is required but missing')
@@ -179,6 +178,7 @@ This sample module contains one small method that filters contigs.
         assembly_util = AssemblyUtil(self.callback_url)
         fasta_file = assembly_util.get_assembly_as_fasta({'ref': params['assembly_ref']})
         print(fasta_file)
+
         # Parse the downloaded file in FASTA format
         parsed_assembly = SeqIO.parse(fasta_file['path'], 'fasta')
         min_length = params['min_length']
